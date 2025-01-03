@@ -5,20 +5,19 @@ import { getProjects } from "../features/projectSlice";
 import { getTasks } from "../features/taskSlice";
 import { useEffect, useState } from "react";
 import { getUser } from "../features/userSlice";
-import { getTags } from "../features/tagSlice";
+import { getTeams } from "../features/teamSlice";
 
-const Management = () =>{
+const Teams = () =>{
    const { tasks } = useSelector((state) => state.tasks);
    const { projects } = useSelector((state) => state.projects);
-   const {tags} = useSelector((state) => state.tags)
-   const {users} = useSelector((state) => state.users)
+   const {teams} = useSelector((state) => state.teams)
    const [filterItems,setItems] = useState([])
    const dispatch = useDispatch()
    
    useEffect(() =>{
     dispatch(getProjects())
     dispatch(getTasks())
-    dispatch(getTags())
+    dispatch(getTeams())
     dispatch(getUser())
     setItems(tasks)
    },[])
@@ -49,17 +48,12 @@ const Management = () =>{
             {
                 setItems(tasks)
             }
-            else if(type == "owners")
-            {
-                const items = tasks.filter((task) => task.owners.some((person) => person.name == val))
-                setItems(items)
-            }
             else
             {
-                const items  = tasks.filter((task) => task.tags.some((tag) => tag == val))
+                const items = tasks.filter((task) => task.team.name == val)
                 setItems(items)
-            }   
-            
+            }
+             
         }
    }
     return(
@@ -108,22 +102,11 @@ const Management = () =>{
                         </li>
                         <li className="list-group-item">
                             <label>Filter By:</label>
-                            <div className="row mt-3">
-                                <div className="col">
-                                    <label>Tags:</label>
-                                    <select onChange={(e) => handlEFilterChnage(e.target.value,"tags") } className="form-select">
-                                        <option value=" "></option>
-                                        {tags.map((tag) => <option value={tag.name}>{tag.name}</option>)}
+                                    <label>Teams:</label>
+                                    <select onChange={(e) => handlEFilterChnage(e.target.value,"team") } className="form-select">
+                                        <option value=" ">Default</option>
+                                        {teams.map((team) => <option value={team.name}>{team.name}</option>)}
                                     </select>
-                                </div>
-                                <div className="col">
-                                    <label>Owners:</label>
-                                    <select onChange={(e) => handlEFilterChnage(e.target.value,"owners") } className="form-select">
-                                        <option value=" "></option>
-                                        {users.map((user) => <option value={user.name}>{user.name}</option>)}
-                                    </select>
-                                </div>
-                            </div>
                         </li>
 
                         <li className="list-group-item">
@@ -141,4 +124,4 @@ const Management = () =>{
     )
 }
 
-export default Management
+export default Teams

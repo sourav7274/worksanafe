@@ -9,6 +9,11 @@ import TaskCreate from './pages/TaskCreate';
 import TaskDetail from './pages/TaskDetail';
 import Reports from './pages/Reports';
 import TeamManagement from './pages/TeamManagement';
+import Register from './pages/Register';
+import store from './app/store'
+import { Provider } from 'react-redux';
+import Teams from './pages/Team';
+
 
 const router = createBrowserRouter([
   {
@@ -28,7 +33,7 @@ const router = createBrowserRouter([
     element:<TaskCreate/>
   },
   {
-    path:"/taskdetail",
+    path:"/taskdetail/:id",
     element:<TaskDetail/>
   },
   {
@@ -38,13 +43,24 @@ const router = createBrowserRouter([
   {
     path:"/teamManage",
     element:<TeamManagement/>
+  },
+  {
+    path:"/register",
+    element:<Register/>
+  },
+  {
+    path:"/teams",
+    element:<Teams/>
   }
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <RouterProvider router={router} />
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+     
   </React.StrictMode>
 );
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 const Reports = () =>{
     return(
         <div className="container py-4">
@@ -6,10 +7,10 @@ const Reports = () =>{
                 <div className="col-4 m-4">
                     <h3 className="text-center">Sidebar</h3>
                     <ul className="list-group">
-                        <li className="list-group-item">Back to Dashboard</li>
+                        <li className="list-group-item"><Link to="/dashboard">Back to Dashboard</Link></li>
                     </ul>
                 </div>
-                <div className="col">
+                <div className="col mt-4">
                 <h3 className="text-center">Report Overview</h3>
                     <ul className="list-group">
                         <li className="list-group-item">Total Work Done by Last Week: </li>
