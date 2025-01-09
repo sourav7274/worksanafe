@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getProjects = createAsyncThunk("project/get",async () =>{
-    const response = await fetch("http://localhost:3000/projects",{
+    const response = await fetch("https://work-sana-be-git-master-depressions-projects.vercel.app/projects",{
         method:"GET",
         headers:{
             'Content-Type' : 'application/json'

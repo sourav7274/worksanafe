@@ -12,7 +12,7 @@ const TaskDetail = () =>{
     const [status,setStatus] = useState(detail.status)
 
     const handleClick = async () =>{
-        const respnse = await fetch(`http://localhost:3000/task/${detail._id}`,{
+        const respnse = await fetch(`https://work-sana-be-git-master-depressions-projects.vercel.app/task/${detail._id}`,{
             method:"PUT",
             headers:{
                 'Content-Type' : "application/json"

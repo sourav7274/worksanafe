@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
 export const getTasks = createAsyncThunk('task/get', async () => {
-    const response = await fetch("http://localhost:3000/tasks", {
+    const response = await fetch("https://work-sana-be-git-master-depressions-projects.vercel.app/tasks", {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -16,7 +16,7 @@ export const getTasks = createAsyncThunk('task/get', async () => {
 });
 
 export const addTasks = createAsyncThunk('/task/add', async (info) =>{
-    const response = await fetch('http://localhost:3000/newTask',{
+    const response = await fetch('https://work-sana-be-git-master-depressions-projects.vercel.app/newTask',{
         method: "POST",
         headers :{
             'Content-Type' : 'application/json'

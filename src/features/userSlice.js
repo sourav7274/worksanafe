@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
 export const getUser = createAsyncThunk('get/user',async () =>{
-    const response = await fetch('http://localhost:3000/users',{
+    const response = await fetch('https://work-sana-be-git-master-depressions-projects.vercel.app/users',{
         method:"GET",
         headers:{
             'Content-Type':"application/json"
