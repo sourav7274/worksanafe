@@ -8,32 +8,52 @@ function App() {
     const [mail,setMail] = useState("")
     const [pass,setPass] = useState("")
     const [disE,setDise] = useState(false)
-    const handleClick = async  () =>{
-      const  data = {
-            email: mail,
-            password:pass
-        }
-        console.log(data)
-        const response = await fetch("http://localhost:3000/signin",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
+   const handleClick = async () => {
+    const data = {
+        email: mail,
+        password: pass
+    };
+
+    const response = await fetch("http://localhost:3000/signin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
-      })
-       if(!response.ok)
-        {
-            setDise(true)
-            console.log(response.status)
-        }
-        else{
-          const result = await response.json()
-          console.log(result.token)
+    });
 
-          localStorage.setItem('token',result.token)
-          navigate("/dashboard") 
+    if (!response.ok) {
+        setDise(true);
+        console.log(response.status);
+    } else {
+        const result = await response.json();
+        console.log(result);
+        try {
+            // Store the token in localStorage
+            localStorage.setItem('token', result.token);
+
+            // Validate the token after storing it
+            const vResponse = await fetch("http://localhost:3000/validate", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${result.token}` // Pass token in the Authorization header
+                }
+            });
+            console.log(vResponse);
+            if (!vResponse.ok) {
+                console.log("Error validating token");
+            } else {
+                navigate("/dashboard"); // Redirect to the dashboard if valid
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
+};
+
+  
+  
   return (
     <div className="container py-4" >
      <h1 className="text-center">Worksana Login</h1>
