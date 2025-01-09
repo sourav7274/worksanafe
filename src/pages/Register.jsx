@@ -13,7 +13,7 @@ const Register = () =>{
             password:pass
         }
         console.log(data)
-        const response = await fetch("https://work-sana-be-git-master-depressions-projects.vercel.app//signup",{
+        const response = await fetch("https://work-sana-be.vercel.app/signup",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"

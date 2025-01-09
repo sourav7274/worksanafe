@@ -14,7 +14,7 @@ function App() {
         password: pass
     };
 
-    const response = await fetch("https://work-sana-be-git-master-depressions-projects.vercel.app/signin", {
+    const response = await fetch("https://work-sana-be.vercel.app/signin", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -33,7 +33,7 @@ function App() {
             localStorage.setItem('token', result.token);
 
             // Validate the token after storing it
-            const vResponse = await fetch("https://work-sana-be-git-master-depressions-projects.vercel.app/validate", {
+            const vResponse = await fetch("https://work-sana-be.vercel.app/validate", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
